@@ -1,0 +1,40 @@
+{% load bootstrap3 %}
+<div class="tab-pane fade" id="staff">
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Отчество</th>
+          <th>Кафедра</th>
+          <th>Степень/Звание</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for staff in staffs %}
+        <tr>
+          <td>{{forloop.counter }}</td>
+          <td>{{ staff.lastname }}</td>
+          <td>{{ staff.name }}</td>
+          <td>{{ staff.secondname }}</td>
+          <td>{{ staff.chair }}</td>
+          <td>{{ staff.degree }}</td>
+        <td>
+              <div class="btn-group">
+                  <a href="#" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">{% bootstrap_icon "cog" %}</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'update-staff' staff.id %}">{% bootstrap_icon "pencil" %} Редактировать</a></li>
+                    <li><a href="{% url 'delete-staff' staff.id %}">{% bootstrap_icon "remove" %} Удалить</a></li>
+                  </ul>
+              </div>
+          </td>
+        </tr>
+      {% empty %}
+          <p class="bg-danger">Нет сотрудников-читателей</p>
+      {% endfor %}
+      </tbody>
+
+    </table>
+</div>

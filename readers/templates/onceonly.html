@@ -1,0 +1,38 @@
+{% load bootstrap3 %}
+<div class="tab-pane fade" id="onceonly">
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Отчество</th>
+          <th>Телефон</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for person in onceonly %}
+        <tr>
+          <td>{{forloop.counter }}</td>
+          <td>{{ person.lastname }}</td>
+          <td>{{ person.name }}</td>
+          <td>{{ person.secondname }}</td>
+          <td>{{ person.phone }}</td>
+        <td>
+              <div class="btn-group">
+                  <a href="#" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">{% bootstrap_icon "cog" %}</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'update-once' person.id %}">{% bootstrap_icon "pencil" %} Редактировать</a></li>
+                    <li><a href="{% url 'delete-once' person.id %}">{% bootstrap_icon "remove" %} Удалить</a></li>
+                  </ul>
+              </div>
+          </td>
+        </tr>
+      {% empty %}
+          <p class="bg-danger">Нет разовых читателей</p>
+      {% endfor %}
+      </tbody>
+
+    </table>
+</div>

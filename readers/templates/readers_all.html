@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+{% block readers %}
+    <div class="row">
+            <div class="col-lg-3">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">{% bootstrap_icon "plus" %} Добавить читателя <span class="caret"></span></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="{% url 'new-student' %}">Добавить студента</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'new-staff' %}">Добавить сотрудника</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'new-once' %}">Добавить разового читателя</a></li>
+                  </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="#students" data-toggle="tab">Студенты</a></li>
+                    <li><a href="#staff" data-toggle="tab">Сотрудники</a></li>
+                    <li><a href="#onceonly" data-toggle="tab">Разовые читатели</a></li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                      {% include 'students.html' %}
+                      {% include 'staff.html' %}
+                      {% include 'onceonly.html' %}
+                </div>
+            </div>
+    </div>
+{% endblock %}

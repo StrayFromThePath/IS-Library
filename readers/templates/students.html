@@ -1,0 +1,59 @@
+{% load bootstrap3 %}
+<div class="tab-pane fade active in" id="students">
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+          <th>№ <br/> Чит.билета</th>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Отчество</th>
+          <th>Факультет</th>
+          <th>Группа</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for student in students %}
+        <tr>
+          <td>{{student.id }}</td>
+          <td>{{ student.lastname }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.secondname }}</td>
+          <td>{{ student.faculty }}</td>
+          <td>{{ student.group }}</td>
+          <td>
+              <div class="btn-group">
+                  <a href="#" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">{% bootstrap_icon "cog" %}</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'update-student' student.id %}">{% bootstrap_icon "pencil" %} Редактировать</a></li>
+                    <li><a href="{% url 'delete-student' student.id %}">{% bootstrap_icon "remove" %} Удалить</a></li>
+                  </ul>
+              </div>
+          </td>
+        </tr>
+      {% empty %}
+            <p class="bg-danger">Нет студентов-читателей</p>
+      {% endfor %}
+      </tbody>
+
+    </table>
+ <ul class="pagination">
+                {% if students.has_previous %}
+                    <li class="arrow"><a href="/page/{{ students.previous_page_number }}/">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><a href="">&laquo;</a></li>
+                {% endif %}
+                {% for page in students.paginator.page_range %}
+                    {% if page == students.number %}
+                        <li class="active"><a href="/page/{{ page }}/">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="/page/{{ page }}/">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if students.has_next %}
+                    <li class="arrow"><a href="/page/{{ students.next_page_number }}/">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><a href="">&raquo;</a></li>
+                {% endif %}
+            </ul>
+</div>

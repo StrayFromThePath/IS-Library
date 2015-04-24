@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+{% block new_student %}
+<form action="{% url 'new-student' %}" method="post" class="form form_add-student">{% csrf_token %}
+    {% bootstrap_form form %}
+     {% buttons %}
+        <button type="submit" class="btn btn-primary btn__add-student" data-loading-text="Добавляем...">
+            {% bootstrap_icon "ok" %} Добавить
+        </button>
+    {% endbuttons %}
+</form>
+
+{% endblock %}
+
+
+

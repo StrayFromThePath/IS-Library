@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+{% block new_booklend %}
+
+<form action="{% url 'new-booklend' %}" method="post" class="form">{% csrf_token %}
+
+    {% bootstrap_form form %}
+     {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "ok" %} Добавить
+        </button>
+    {% endbuttons %}
+</form>
+{% endblock %}

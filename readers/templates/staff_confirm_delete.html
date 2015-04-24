@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+{% block delete_staff %}
+
+<form action="{% url 'delete-staff' staff.id %}" method="post" class="form">{% csrf_token %}
+        <p>Вы действительно хотите удалить {{ staff.lastname }} {{ staff.name }}  {{ staff.secondname }}?</p>
+        <button type="submit" class="btn btn-danger">
+             Удалить
+        </button>
+        <a href="{%  url 'all-readers' %}" class="btn btn-primary">
+             Назад
+        </a>
+</form>
+
+{% endblock %}

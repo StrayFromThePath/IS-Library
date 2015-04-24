@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+{% block catalog %}
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-info pull-right btn__add-section" href="{% url 'new-booklend' %}">{% bootstrap_icon "plus" %} Выдать книгу</a>
+        </div>
+    </div>
+   <div class="row">
+     <table class="table table-striped table-responsive table__book">
+
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Читатель</th>
+          <th>Книга</th>
+          <th>Дата выдачи</th>
+          <th>Дата возврата</th>
+          <th>Фактическая дата возврата</th>
+          <th>Абонемент 1</th>
+          <th>Абонемент 2</th>
+          <th>Читальный зал</th>
+          <th>Отметка о сдаче</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for book in books %}
+        <tr>
+          <td>{{book.id}}</td>
+          <td>{{ book.reader }}</td>
+          <td>{{ book.book }}</td>
+          <td>{{ book.lend_date }}</td>
+          <td>{{ book.lend_date_end }}</td>
+          <td>{% if book.lend_date_fact %}
+              {{ book.lend_date_fact }}
+              {% else %}
+              -
+              {% endif %}</td>
+          <td>
+              {% if book.abonement1 == 1 %}
+                {% bootstrap_icon "ok" %}
+              {% else %}
+                {% bootstrap_icon "remove" %}
+              {% endif %}
+          </td>
+          <td>
+              {% if book.abonement2 == 1 %}
+                {% bootstrap_icon "ok" %}
+              {% else %}
+                {% bootstrap_icon "remove" %}
+              {% endif %}
+          </td>
+
+          <td>
+              {% if book.read_room == 1 %}
+                {% bootstrap_icon "ok" %}
+              {% else %}
+                {% bootstrap_icon "remove" %}
+              {% endif %}
+          </td>
+          <td>{% if book.mark_return == 1 %}
+              {% bootstrap_icon "ok" %}
+              {% else %}
+               <a class="btn btn-info btn-sm" href="{% url 'update-booklend' book.id %}">Сдать</a>
+              {% endif %}
+          </td>
+        </tr>
+      </tbody>
+      {% empty %}
+          <p class="bg-danger">Список пуст</p>
+      {% endfor %}
+    </table>
+   </div>
+{% endblock %}

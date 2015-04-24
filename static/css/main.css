@@ -1,0 +1,29 @@
+body {
+    padding-top: 70px;
+}
+
+.bg-danger {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.nav-tabs.nav-justified {
+    margin-bottom: 30px;
+}
+
+.table__book {
+    font-size: 11px;
+}
+
+.glyphicon-ok {
+    color: green;
+}
+
+.glyphicon-remove {
+    color: red;
+}
+
+.btn__add-section {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}

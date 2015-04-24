@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+{% block delete_once %}
+
+<form action="{% url 'delete-once' onceonly.id %}" method="post" class="form">{% csrf_token %}
+        <p>Вы действительно хотите удалить {{ onceonly.lastname }} {{ onceonly.name }}  {{ onceonly.secondname }}?</p>
+        <button type="submit" class="btn btn-danger">
+             Удалить
+        </button>
+        <a href="{%  url 'all-readers' %}" class="btn btn-primary">
+             Назад
+        </a>
+</form>
+
+{% endblock %}

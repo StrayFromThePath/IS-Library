@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+{% block update_student %}
+
+<form action="{% url 'update-student' student.id %}" method="post" class="form">{% csrf_token %}
+
+    {% bootstrap_form form %}
+     {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "ok" %} Сохранить
+        </button>
+    {% endbuttons %}
+</form>
+{% endblock %}

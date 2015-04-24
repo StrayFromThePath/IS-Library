@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+{% block update_once %}
+
+<form action="{% url 'update-once' onceonly.id %}" method="post" class="form">{% csrf_token %}
+
+    {% bootstrap_form form %}
+     {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            Сохранить
+        </button>
+    {% endbuttons %}
+</form>
+{% endblock %}
